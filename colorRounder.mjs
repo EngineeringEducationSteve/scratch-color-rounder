@@ -1394,7 +1394,7 @@ var ExtensionBlocks = /*#__PURE__*/function () {
 	    if (statement === "(255, 255, 255)") {
 		    answer = "white";
 	    }
-	    if (statement === "(0, 255, 255)") {
+	    if (statement === "(255, 100, 0)") {
 		    answer = "orange";
 	    }
 	    return answer;
