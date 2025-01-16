@@ -37,7 +37,7 @@ var entry = {
   get name() {
     return formatMessage$1({
       id: 'xcratchExample.entry.name',
-      defaultMessage: 'SJCOE FabLab Example: Capitalize',
+      defaultMessage: 'SJCOE FabLab Extension: Color Rounder',
       description: 'name of the extension'
     });
   },
@@ -1263,19 +1263,19 @@ var log = minilog('vm');
 var log$1 = /*@__PURE__*/getDefaultExportFromCjs(log);
 
 var en = {
-	"xcratchExample.name": "SJCOE FabLab Example: Capitalize",
-	"xcratchExample.Capitalize": "Capitalize [SCRIPT]"
+	"xcratchExample.name": "SJCOE FabLab Extension: ColorRounder",
+	"xcratchExample.ColorRounder": "ColorRounder [SCRIPT]"
 };
 var ja = {
 	"xcratchExample.name": "Xcratchの例",
-	"xcratchExample.Capitalize": "[SCRIPT] を実行する"
+	"xcratchExample.ColorCounder": "[SCRIPT] を実行する"
 };
 var translations = {
 	en: en,
 	ja: ja,
 	"ja-Hira": {
 	"xcratchExample.name": "エクスクラッチのれい",
-	"xcratchExample.Capitalize": "[SCRIPT] をじっこうする"
+	"xcratchExample.ColorRounder": "[SCRIPT] をじっこうする"
 }
 };
 
@@ -1344,19 +1344,19 @@ var ExtensionBlocks = /*#__PURE__*/function () {
         blockIconURI: img$2,
         showStatusButton: false,
         blocks: [{
-          opcode: 'Capitalize',
+          opcode: 'ColorRounder',
           blockType: BlockType$1.REPORTER,
           blockAllThreads: false,
           text: formatMessage({
             id: 'xcratchExample.doIt',
-            default: 'Capitalize [SCRIPT]',
-            description: 'execute javascript for example'
+            default: 'ColorRounder [SCRIPT]',
+            description: 'simplify a color code to a text statement'
           }),
           func: 'doIt',
           arguments: {
             SCRIPT: {
               type: ArgumentType$1.STRING,
-              defaultValue: 'Hello, FabLab'
+              defaultValue: '(0, 255, 255)'
             }
           }
         }],
@@ -1368,8 +1368,36 @@ var ExtensionBlocks = /*#__PURE__*/function () {
     value: function doIt(args) {
       var statement = Cast$1.toString(args.SCRIPT);
       var func = new Function("return (".concat(statement, ")"));
-      log$1.log("Capitalize: ".concat(statement));
-	    return statement.toUpperCase();
+      var answer = "blue";
+      log$1.log("ColorRounder: ".concat(statement));
+	    if (statement == "(255, 0, 0)") {
+		    answer = "red";
+	    }
+	    if (statement == "(0, 255, 0)") {
+		    answer = "green";
+	    }
+	    if (statement == "(0, 0, 255)") {
+		    answer = "blue";
+	    }
+	    if (statement == "(0, 255, 255)") {
+		    answer = "cyan";
+	    }
+	    if (statement == "(255, 255, 0)") {
+		    answer = "yellow";
+	    }
+	    if (statement == "(255, 0, 255)") {
+		    answer = "magenta";
+	    }
+	    if (statement == "(0, 0, 0)") {
+		    answer = "dark";
+	    }
+	    if (statement == "(255, 255, 255)") {
+		    answer = "white";
+	    }
+	    if (statement == "(0, 255, 255)") {
+		    answer = "orange";
+	    }
+	    return answer;
       //return func.call(this);
     }
   }], [{
